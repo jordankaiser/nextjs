@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface TestComponentProps {
   initialNum1?: number;
@@ -11,6 +11,10 @@ const TestComponent: React.FC<TestComponentProps> = ({ initialNum1 = 0, initialN
   const [num1, setNum1] = useState<number>(initialNum1);
   const [num2, setNum2] = useState<number>(initialNum2);
   const [sum, setSum] = useState<number | null>(null);
+
+  useEffect(() => {
+    setSum(initialNum1 + initialNum2);
+  }, [initialNum1, initialNum2]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

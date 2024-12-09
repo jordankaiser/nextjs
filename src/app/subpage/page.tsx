@@ -9,7 +9,7 @@ export default function Test() {
         <h1>test page</h1>
       </div>
       <div>
-        <TestComponent />
+        <TestComponent initialNum1={5} initialNum2={10} />
       </div>
     </>
   );

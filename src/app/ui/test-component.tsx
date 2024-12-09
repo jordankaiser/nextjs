@@ -2,9 +2,14 @@
 
 import React, { useState } from 'react';
 
-const TestComponent: React.FC = () => {
-  const [num1, setNum1] = useState<number>(0);
-  const [num2, setNum2] = useState<number>(0);
+interface TestComponentProps {
+  initialNum1?: number;
+  initialNum2?: number;
+}
+
+const TestComponent: React.FC<TestComponentProps> = ({ initialNum1 = 0, initialNum2 = 0 }) => {
+  const [num1, setNum1] = useState<number>(initialNum1);
+  const [num2, setNum2] = useState<number>(initialNum2);
   const [sum, setSum] = useState<number | null>(null);
 
   const handleSubmit = (event: React.FormEvent) => {

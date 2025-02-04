@@ -19,6 +19,13 @@ export function NavLinks() {
       >
         subpage
       </Link>
+
+      <Link
+        className={`link ${pathname === '/todo' ? 'active' : ''}`}
+        href="/todo"
+      >
+        todo
+      </Link>
     </nav>
   )
 }

@@ -4,45 +4,41 @@ import { useState, useEffect } from 'react';
 
 export default function Page() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     let ignore = false;
 
     async function fetchData() {
-      // jsonplaceholder uses json-server which is where the _limit query parameter comes from.
-      // https://jsonplaceholder.typicode.com/guide/
-      // https://github.com/typicode/json-server
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=20');
-      const data = await response.json();
-      if (!ignore) setData(data);
-      console.log(data);
+      try {
+        // jsonplaceholder uses json-server which is where the _limit query parameter comes from.
+        // https://jsonplaceholder.typicode.com/guide/
+        // https://github.com/typicode/json-server
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=20');
+        const jsonData = await response.json();
+        if (!ignore) {
+          setData(jsonData);
+        }
+        console.log(jsonData);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
     }
 
-    try {
-      fetchData();
-    } catch (error) {
-      console.error(error);
-    }
+    fetchData();
 
     return () => {
       ignore = true;
     };
   }, []);
 
-  function AsyncListData() {
-    return (
-      <div>
-        <ul>
-          {data.map((item) => <li key={item.id}>{item.title}</li>)}
-        </ul>
-      </div>
-    );
-  }
+  // Moved list rendering directly to the Page return value.
   return (
-    <>
-      <div>
-        <h1>test api</h1>
-        <AsyncListData />
-      </div>
-    </>
+    <div>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 }

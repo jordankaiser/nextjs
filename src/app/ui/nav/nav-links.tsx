@@ -26,6 +26,13 @@ export function NavLinks() {
       >
         todo
       </Link>
+
+      <Link
+        className={`link ${pathname === '/api' ? 'active' : ''}`}
+        href="/api"
+      >
+        api
+      </Link>
     </nav>
   )
 }

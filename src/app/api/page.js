@@ -18,7 +18,6 @@ export default function Page() {
         if (!ignore) {
           setData(jsonData);
         }
-        console.log(jsonData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }

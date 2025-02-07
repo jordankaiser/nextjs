@@ -33,6 +33,13 @@ export function NavLinks() {
       >
         api
       </Link>
+
+      <Link
+        className={`link ${pathname === '/aichat' ? 'active' : ''}`}
+        href="/aichat"
+      >
+        ai chat
+      </Link>
     </nav>
   )
 }
